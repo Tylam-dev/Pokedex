@@ -19,7 +19,7 @@ class PokemonDescripController: UIViewController {
     @IBOutlet weak var switchShiny: UISwitch!
     @IBOutlet weak var switchMale: UIButton!
     @IBOutlet weak var switchFemale: UIButton!
-    var pokeView: (face: String, genre: String) = ("front","male")
+    var pokeView: (face: String, genre: String, Shiny: String) = ("front","male", "Default")
     
     var pokemonImgDic: [String: URL?] = [:]
     override func viewDidLoad() {
@@ -31,15 +31,16 @@ class PokemonDescripController: UIViewController {
         switchMale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
         switchFemale.layer.masksToBounds = true
         switchFemale.layer.cornerRadius = 10
+        print(type(of: pokeView))
         // Do any additional setup after loading the view.
     }
     func setType (_ tipo: String, _ label: UILabel){
-            DispatchQueue.main.async{
-                label.text = tipo.capitalized
-                label.layer.masksToBounds = true
-                label.layer.cornerRadius = 10
-                self.setColorType(tipo, label)
-            }
+        DispatchQueue.main.async{
+            label.text = tipo.capitalized
+            label.layer.masksToBounds = true
+            label.layer.cornerRadius = 10
+            self.setColorType(tipo, label)
+        }
     }
     func fetchPokemon(_ num: Int){
         AF.request("https://pokeapi.co/api/v2/pokemon/\(String(num))")
@@ -78,7 +79,7 @@ class PokemonDescripController: UIViewController {
                     if let imgFrontM = value.sprites?.frontDefault{
                         self.pokemonImgDic["imgFrontM"] = URL(string: imgFrontM)
                     }
-                    if let imgBackM = value.sprites?.backFemale{
+                    if let imgBackM = value.sprites?.backDefault{
                         self.pokemonImgDic["imgBackM"] = URL(string: imgBackM)
                     }
                     if let frontSM = value.sprites?.frontShiny{
@@ -113,21 +114,10 @@ class PokemonDescripController: UIViewController {
     }
     
     @IBAction func SwitchToMale() {
-        if switchShiny.isOn{
-            if let maleImgS = pokemonImgDic["frontSM"]{
-                pokeImg.kf.setImage(with: maleImgS)
-            }
-            self.pokeView.genre = "male"
-            switchMale.layer.borderWidth = 5
-            switchMale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
-        }else{
-            if let maleImg = pokemonImgDic["imgFrontM"]{
-                pokeImg.kf.setImage(with: maleImg)
-            }
-            self.pokeView.genre = "male"
-            switchMale.layer.borderWidth = 5
-            switchMale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
-        }
+        self.pokeView.genre = "male"
+        setImage()
+        switchMale.layer.borderWidth = 5
+        switchMale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
         switchFemale.layer.borderWidth = 0
     }
     
@@ -138,91 +128,112 @@ class PokemonDescripController: UIViewController {
             switchFemale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
             return
         }
-        if switchShiny.isOn{
-            if let femaleImgS = pokemonImgDic["frontSF"]{
-                pokeImg.kf.setImage(with: femaleImgS)
-            }
-            self.pokeView.genre = "female"
-            switchFemale.layer.borderWidth = 5
-            switchFemale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
-        }else{
-            if let femaleImg = pokemonImgDic["imgFrontF"]{
-                pokeImg.kf.setImage(with: femaleImg)
-            }
-            self.pokeView.genre = "female"
-            switchFemale.layer.borderWidth = 5
-            switchFemale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
-        }
+        pokeView.genre = "female"
+        setImage()
+        switchFemale.layer.borderWidth = 5
+        switchFemale.layer.borderColor = CGColor(red: 0, green: 0.80, blue: 0, alpha: 1)
         switchMale.layer.borderWidth = 0
     }
     @IBAction func switchShinyAction(_ sender: UISwitch) {
         if sender.isOn {
-            switch pokeView {
-            case ("front", "male"):
-                if let maleImgS = pokemonImgDic["frontSM"]{
-                    pokeImg.kf.setImage(with: maleImgS)
-                }
-            case ("front", "female"):
-                if let femaleImgS = pokemonImgDic["frontSF"]{
-                    pokeImg.kf.setImage(with: femaleImgS)
-                }
-            case (_,_):
-                return
-            }
+            pokeView.Shiny = "Shiny"
+            setImage()
         }else{
-            switch pokeView {
-            case ("front", "male"):
-                if let DefaultImg = self.pokemonImgDic["imgFrontM"]{
-                    self.pokeImg.kf.setImage(with: DefaultImg)}
-            case ("front", "female"):
-                if let femaleImg = self.pokemonImgDic["imgFrontF"]{
-                    self.pokeImg.kf.setImage(with: femaleImg)}
-            case (_,_):
-                return
-            }
+            pokeView.Shiny = "Default"
+            setImage()
         }
     }
-    //MARK: - Color Type
-    func setColorType(_ type:String, _ uiLabel: UILabel){
-        switch type {
-        case "grass":
-            uiLabel.backgroundColor = UIColor(red: 0, green: 0.45, blue: 0, alpha: 1)
-        case "poison":
-            uiLabel.backgroundColor = UIColor(red: 0.5, green: 0, blue: 1, alpha: 1)
-        case "flying":
-            uiLabel.backgroundColor = UIColor(red: 0.38, green: 0.44, blue: 0.81, alpha: 1)
-        case "bug":
-            uiLabel.backgroundColor = UIColor(red: 0.58, green: 0.62, blue: 0.20, alpha: 1)
-        case "dark":
-            uiLabel.backgroundColor = UIColor(red: 0.21, green: 0.18, blue: 0.13, alpha: 1)
-        case "dragon":
-            uiLabel.backgroundColor = UIColor(red: 0.43, green: 0.36, blue: 0.84, alpha: 1)
-        case "electric":
-            uiLabel.backgroundColor = UIColor(red: 0.93, green: 0.73, blue: 0.27, alpha: 1)
-        case "fairy":
-            uiLabel.backgroundColor = UIColor(red: 0.81, green: 0.58, blue: 0.84, alpha: 1)
-        case "fighting":
-            uiLabel.backgroundColor = UIColor(red: 0.45, green: 0.21, blue: 0.12, alpha: 1)
-        case "fire":
-            uiLabel.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0, alpha: 1)
-        case "ghost":
-            uiLabel.backgroundColor = UIColor(red: 0.38, green: 0.37, blue: 0.67, alpha: 1)
-        case "ground":
-            uiLabel.backgroundColor = UIColor(red: 0.79, green: 0.68, blue: 0.39, alpha: 1)
-        case "ice":
-            uiLabel.backgroundColor = UIColor(red: 0.65, green: 0.87, blue: 0.97, alpha: 1)
-        case "normal":
-            uiLabel.backgroundColor = UIColor(red: 0.77, green: 0.74, blue: 0.71, alpha: 1)
-        case "psychic":
-            uiLabel.backgroundColor = UIColor(red: 0.83, green: 0.32, blue: 0.48, alpha: 1)
-        case "rock":
-            uiLabel.backgroundColor = UIColor(red: 0.60, green: 0.52, blue: 0.28, alpha: 1)
-        case "steel":
-            uiLabel.backgroundColor = UIColor(red: 0.69, green: 0.69, blue: 0.75, alpha: 1)
-        case "water":
-            uiLabel.backgroundColor = UIColor(red: 0.26, green: 0.52, blue: 0.90, alpha: 1)
-        default:
+    
+    @IBAction func rotateImage() {
+        if pokeView.face == "front"{
+            pokeView.face = "back"
+            setImage()
+        }else {
+            pokeView.face = "front"
+            setImage()
+        }
+    }
+    
+    func setImage(){
+        switch pokeView {
+        case ("front", "male","Shiny"):
+            if let maleImgS = pokemonImgDic["frontSM"]{
+                pokeImg.kf.setImage(with: maleImgS)
+            }
+        case ("front", "female","Shiny"):
+            if let femaleImgS = pokemonImgDic["frontSF"]{
+                pokeImg.kf.setImage(with: femaleImgS)
+            }
+        case ("front", "male", "Default"):
+            if let DefaultImg = pokemonImgDic["imgFrontM"]{
+                self.pokeImg.kf.setImage(with: DefaultImg)
+            }
+        case ("front", "female", "Default"):
+            if let femaleImg = pokemonImgDic["imgFrontF"]{
+                self.pokeImg.kf.setImage(with: femaleImg)
+            }
+        case ("back", "male","Shiny"):
+            if let maleImgS = pokemonImgDic["backSM"]{
+                pokeImg.kf.setImage(with: maleImgS)
+            }
+        case ("back", "female","Shiny"):
+            if let femaleImgS = pokemonImgDic["backSF"]{
+                pokeImg.kf.setImage(with: femaleImgS)
+            }
+        case ("back", "male", "Default"):
+            if let DefaultImg = pokemonImgDic["imgBackM"]{
+                self.pokeImg.kf.setImage(with: DefaultImg)
+            }
+        case ("back", "female", "Default"):
+            if let femaleImg = pokemonImgDic["imgBackF"]{
+                self.pokeImg.kf.setImage(with: femaleImg)
+            }
+        case (_,_,_):
             return
         }
     }
-}
+        
+        //MARK: - Color Type
+        func setColorType(_ type:String, _ uiLabel: UILabel){
+            switch type {
+            case "grass":
+                uiLabel.backgroundColor = UIColor(red: 0, green: 0.45, blue: 0, alpha: 1)
+            case "poison":
+                uiLabel.backgroundColor = UIColor(red: 0.5, green: 0, blue: 1, alpha: 1)
+            case "flying":
+                uiLabel.backgroundColor = UIColor(red: 0.38, green: 0.44, blue: 0.81, alpha: 1)
+            case "bug":
+                uiLabel.backgroundColor = UIColor(red: 0.58, green: 0.62, blue: 0.20, alpha: 1)
+            case "dark":
+                uiLabel.backgroundColor = UIColor(red: 0.21, green: 0.18, blue: 0.13, alpha: 1)
+            case "dragon":
+                uiLabel.backgroundColor = UIColor(red: 0.43, green: 0.36, blue: 0.84, alpha: 1)
+            case "electric":
+                uiLabel.backgroundColor = UIColor(red: 0.93, green: 0.73, blue: 0.27, alpha: 1)
+            case "fairy":
+                uiLabel.backgroundColor = UIColor(red: 0.81, green: 0.58, blue: 0.84, alpha: 1)
+            case "fighting":
+                uiLabel.backgroundColor = UIColor(red: 0.45, green: 0.21, blue: 0.12, alpha: 1)
+            case "fire":
+                uiLabel.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0, alpha: 1)
+            case "ghost":
+                uiLabel.backgroundColor = UIColor(red: 0.38, green: 0.37, blue: 0.67, alpha: 1)
+            case "ground":
+                uiLabel.backgroundColor = UIColor(red: 0.79, green: 0.68, blue: 0.39, alpha: 1)
+            case "ice":
+                uiLabel.backgroundColor = UIColor(red: 0.65, green: 0.87, blue: 0.97, alpha: 1)
+            case "normal":
+                uiLabel.backgroundColor = UIColor(red: 0.77, green: 0.74, blue: 0.71, alpha: 1)
+            case "psychic":
+                uiLabel.backgroundColor = UIColor(red: 0.83, green: 0.32, blue: 0.48, alpha: 1)
+            case "rock":
+                uiLabel.backgroundColor = UIColor(red: 0.60, green: 0.52, blue: 0.28, alpha: 1)
+            case "steel":
+                uiLabel.backgroundColor = UIColor(red: 0.69, green: 0.69, blue: 0.75, alpha: 1)
+            case "water":
+                uiLabel.backgroundColor = UIColor(red: 0.26, green: 0.52, blue: 0.90, alpha: 1)
+            default:
+                return
+            }
+        }
+    }
