@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="KGk-i7-Jjw" customClass="PokemonCell" customModule="Pokedex" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="103"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="103"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre Pokemon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rj8-Bx-fJ1">
+                        <rect key="frame" x="20" y="19" width="137" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mnz-we-dGf">
+                        <rect key="frame" x="280" y="7" width="90" height="89"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="3F6-cs-yGt"/>
+                            <constraint firstAttribute="height" constant="89" id="eZI-1b-eEO"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRb-dK-pXb">
+                        <rect key="frame" x="26" y="48" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egk-1V-v4W">
+                        <rect key="frame" x="115" y="48" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="numero" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIQ-wH-Aj1" userLabel="numero">
+                        <rect key="frame" x="213" y="19" width="59" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mnz-we-dGf" firstAttribute="leading" secondItem="egk-1V-v4W" secondAttribute="trailing" constant="123" id="4vC-kb-Itm"/>
+                    <constraint firstItem="Rj8-Bx-fJ1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="94E-2u-hkj"/>
+                    <constraint firstItem="egk-1V-v4W" firstAttribute="top" secondItem="Rj8-Bx-fJ1" secondAttribute="bottom" constant="8" symbolic="YES" id="Ftx-TO-ug6"/>
+                    <constraint firstItem="Rj8-Bx-fJ1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="HbZ-nJ-FNh"/>
+                    <constraint firstItem="mnz-we-dGf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="RcW-0L-j04"/>
+                    <constraint firstItem="GIQ-wH-Aj1" firstAttribute="leading" secondItem="Rj8-Bx-fJ1" secondAttribute="trailing" constant="56" id="RoT-js-o7h"/>
+                    <constraint firstItem="GRb-dK-pXb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="26" id="YDj-Gq-80q"/>
+                    <constraint firstAttribute="bottom" secondItem="mnz-we-dGf" secondAttribute="bottom" constant="7" id="aDV-iI-rGb"/>
+                    <constraint firstAttribute="bottom" secondItem="GRb-dK-pXb" secondAttribute="bottom" constant="34" id="axr-Yy-i2d"/>
+                    <constraint firstAttribute="bottom" secondItem="egk-1V-v4W" secondAttribute="bottom" constant="34" id="eyu-fH-WGi"/>
+                    <constraint firstItem="GRb-dK-pXb" firstAttribute="top" secondItem="Rj8-Bx-fJ1" secondAttribute="bottom" constant="8" symbolic="YES" id="i8q-4a-rV6"/>
+                    <constraint firstItem="mnz-we-dGf" firstAttribute="leading" secondItem="GIQ-wH-Aj1" secondAttribute="trailing" constant="8" symbolic="YES" id="jHG-wu-GlM"/>
+                    <constraint firstItem="GIQ-wH-Aj1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="nNm-5g-JjS"/>
+                    <constraint firstAttribute="bottom" secondItem="GIQ-wH-Aj1" secondAttribute="bottom" constant="63" id="rgn-BE-yN8"/>
+                    <constraint firstItem="egk-1V-v4W" firstAttribute="leading" secondItem="GRb-dK-pXb" secondAttribute="trailing" constant="47" id="yCR-29-rne"/>
+                    <constraint firstAttribute="trailing" secondItem="mnz-we-dGf" secondAttribute="trailing" constant="20" symbolic="YES" id="z7A-wx-sw5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="fotoPokemon" destination="mnz-we-dGf" id="eei-cg-B29"/>
+                <outlet property="nombrePokemon" destination="Rj8-Bx-fJ1" id="fgz-2Z-gFq"/>
+                <outlet property="tipo1" destination="GRb-dK-pXb" id="ThB-dW-5fs"/>
+                <outlet property="tipo2" destination="egk-1V-v4W" id="QJB-ju-dEk"/>
+            </connections>
+            <point key="canvasLocation" x="160.30534351145039" y="-32.04225352112676"/>
+        </tableViewCell>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="snQ-Da-b7I">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="107" y="60"/>
+        </label>
+    </objects>
+</document>

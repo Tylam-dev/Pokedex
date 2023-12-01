@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Koa-rs-D6a">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pokemon Finder-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="06M-AK-VQK">
+                                <rect key="frame" x="10" y="103" width="373" height="34.333333333333343"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From #" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q51-UO-HXY">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="34.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="to #" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZCL-ps-wIE">
+                                        <rect key="frame" x="124.33333333333334" y="0.0" width="124.33333333333334" height="34.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Eu-3r-E7e">
+                                        <rect key="frame" x="248.66666666666671" y="0.0" width="124.33333333333334" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Find"/>
+                                        <connections>
+                                            <action selector="findPokes:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fga-Aa-FQo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CzD-Rn-wHw" userLabel="Full_poke">
+                                <rect key="frame" x="0.0" y="137.33333333333331" width="393" height="668.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CzD-Rn-wHw" secondAttribute="bottom" constant="12" id="0iD-bD-WZM"/>
+                            <constraint firstItem="CzD-Rn-wHw" firstAttribute="top" secondItem="06M-AK-VQK" secondAttribute="bottom" id="KAF-xY-AIl"/>
+                            <constraint firstItem="06M-AK-VQK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="Qom-b3-OvO"/>
+                            <constraint firstItem="06M-AK-VQK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="g0h-b2-hrW"/>
+                            <constraint firstItem="06M-AK-VQK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="qXJ-oM-aNn"/>
+                            <constraint firstItem="CzD-Rn-wHw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vjx-hc-eET"/>
+                            <constraint firstItem="CzD-Rn-wHw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yNW-T2-2Y3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Pokemon Finder" leftItemsSupplementBackButton="YES" id="Tpj-Kn-moV"/>
+                    <connections>
+                        <outlet property="findPokeFrom" destination="Q51-UO-HXY" id="1fm-WL-O1s"/>
+                        <outlet property="findPokeTo" destination="ZCL-ps-wIE" id="OoZ-Hg-9zl"/>
+                        <outlet property="pokemonList" destination="CzD-Rn-wHw" id="mc8-NE-HkA"/>
+                        <segue destination="swf-Im-uDx" kind="presentation" identifier="PokemonDescription" id="eWf-B7-JKp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1973.2824427480916" y="-34.507042253521128"/>
+        </scene>
+        <!--Pokemon Descrip Controller-->
+        <scene sceneID="gHZ-TP-vTL">
+            <objects>
+                <viewController id="swf-Im-uDx" customClass="PokemonDescripController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="srw-0p-Vy4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="TF9-6Q-8wH">
+                                <rect key="frame" x="0.0" y="83" width="393" height="246"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4J-uo-yY0">
+                                        <rect key="frame" x="0.0" y="81.666666666666657" width="78" height="82.666666666666657"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="◀️">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="50"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uth-hi-lh8">
+                                        <rect key="frame" x="79.666666666666686" y="0.0" width="234" height="246"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="234" id="gEW-rl-zPd"/>
+                                            <constraint firstAttribute="height" constant="246" id="kkk-r1-CQu"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7h-v1-Hjh">
+                                        <rect key="frame" x="315" y="81.666666666666657" width="78" height="82.666666666666657"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="▶️">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="50"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="T4J-uo-yY0" firstAttribute="centerY" secondItem="TF9-6Q-8wH" secondAttribute="centerY" id="TC0-io-gHJ"/>
+                                    <constraint firstItem="J7h-v1-Hjh" firstAttribute="centerY" secondItem="TF9-6Q-8wH" secondAttribute="centerY" id="TWI-Kl-lgt"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hS9-cK-Q7t">
+                                <rect key="frame" x="50" y="355" width="293" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="H9s-sD-ELF">
+                                <rect key="frame" x="115.99999999999999" y="393" width="160.66666666666663" height="82.666666666666686"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGw-WA-keC">
+                                        <rect key="frame" x="0.0" y="0.0" width="54.333333333333336" height="82.666666666666671"/>
+                                        <color key="backgroundColor" red="0.2327575982" green="0.57739292320000002" blue="0.71338504550000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="♂︎">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="50"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="SwitchToMale" destination="swf-Im-uDx" eventType="touchUpInside" id="ylg-oo-dPX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTE-op-SBv">
+                                        <rect key="frame" x="106.33333333333333" y="0.0" width="54.333333333333329" height="82.666666666666671"/>
+                                        <color key="backgroundColor" red="0.77529761904761907" green="0.13993409863945577" blue="0.73065476190476186" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="♀︎">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="50"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="SwitchToFemale" destination="swf-Im-uDx" eventType="touchUpInside" id="qIx-5E-ck7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="wKg-xa-Csh">
+                                <rect key="frame" x="50" y="496" width="293" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhk-HW-icw">
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
+                                        <color key="backgroundColor" red="0.5" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiY-bV-EBv">
+                                        <rect key="frame" x="0.0" y="33" width="293" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="JpJ-cq-2lc">
+                                <rect key="frame" x="50" y="579" width="293" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shiny" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WjC-qw-MKa">
+                                        <rect key="frame" x="0.0" y="0.0" width="60.333333333333336" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZBJ-lg-gFh">
+                                        <rect key="frame" x="244" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchShinyAction:" destination="swf-Im-uDx" eventType="valueChanged" id="8cv-39-lrf"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DeX-eq-N4s"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DeX-eq-N4s" firstAttribute="trailing" secondItem="JpJ-cq-2lc" secondAttribute="trailing" constant="50" id="127-XT-MSX"/>
+                            <constraint firstItem="hS9-cK-Q7t" firstAttribute="top" secondItem="TF9-6Q-8wH" secondAttribute="bottom" constant="26" id="K8r-Vf-Wmj"/>
+                            <constraint firstItem="JpJ-cq-2lc" firstAttribute="leading" secondItem="DeX-eq-N4s" secondAttribute="leading" constant="50" id="KNj-K2-iHx"/>
+                            <constraint firstItem="wKg-xa-Csh" firstAttribute="leading" secondItem="DeX-eq-N4s" secondAttribute="leading" constant="50" id="NEK-xb-hwe"/>
+                            <constraint firstItem="JpJ-cq-2lc" firstAttribute="top" secondItem="wKg-xa-Csh" secondAttribute="bottom" constant="20" id="QUl-BE-OtX"/>
+                            <constraint firstItem="wKg-xa-Csh" firstAttribute="top" secondItem="H9s-sD-ELF" secondAttribute="bottom" constant="20.329999999999998" id="SHO-3Q-LU7"/>
+                            <constraint firstItem="hS9-cK-Q7t" firstAttribute="leading" secondItem="DeX-eq-N4s" secondAttribute="leading" constant="50" id="SUx-cl-sSB"/>
+                            <constraint firstItem="DeX-eq-N4s" firstAttribute="trailing" secondItem="wKg-xa-Csh" secondAttribute="trailing" constant="50" id="SeQ-iK-ppF"/>
+                            <constraint firstItem="DeX-eq-N4s" firstAttribute="trailing" secondItem="TF9-6Q-8wH" secondAttribute="trailing" id="UW8-tA-b8y"/>
+                            <constraint firstItem="DeX-eq-N4s" firstAttribute="trailing" secondItem="H9s-sD-ELF" secondAttribute="trailing" constant="116.33" id="XXw-gY-Yhw"/>
+                            <constraint firstItem="TF9-6Q-8wH" firstAttribute="top" secondItem="DeX-eq-N4s" secondAttribute="top" constant="83" id="Xf1-H2-mfi"/>
+                            <constraint firstItem="TF9-6Q-8wH" firstAttribute="leading" secondItem="DeX-eq-N4s" secondAttribute="leading" id="bye-Qb-4gR"/>
+                            <constraint firstItem="H9s-sD-ELF" firstAttribute="leading" secondItem="DeX-eq-N4s" secondAttribute="leading" constant="116" id="dB3-my-PBd"/>
+                            <constraint firstItem="H9s-sD-ELF" firstAttribute="top" secondItem="hS9-cK-Q7t" secondAttribute="bottom" constant="8" symbolic="YES" id="vCW-FT-Vjf"/>
+                            <constraint firstItem="DeX-eq-N4s" firstAttribute="trailing" secondItem="hS9-cK-Q7t" secondAttribute="trailing" constant="50" id="xEv-GM-gjJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pokeImg" destination="uth-hi-lh8" id="ldD-Xa-286"/>
+                        <outlet property="pokemonName" destination="hS9-cK-Q7t" id="5dB-Kj-LoT"/>
+                        <outlet property="switchFemale" destination="aTE-op-SBv" id="Hpf-TG-hkG"/>
+                        <outlet property="switchMale" destination="cGw-WA-keC" id="4OI-1b-XQB"/>
+                        <outlet property="switchShiny" destination="ZBJ-lg-gFh" id="j56-i8-2BU"/>
+                        <outlet property="type1" destination="bhk-HW-icw" id="e5K-55-dMo"/>
+                        <outlet property="type2" destination="KiY-bV-EBv" id="sDS-N4-Wxa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jBi-Xm-d74" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2901.5267175572517" y="-35.211267605633807"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aaF-pj-nRR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Koa-rs-D6a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YhR-Y5-jJA">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eod-yo-AlU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zwW-ut-HD7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1046.5648854961833" y="-34.507042253521128"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
